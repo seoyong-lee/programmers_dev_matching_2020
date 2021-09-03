@@ -1,0 +1,154 @@
+@font-face {
+  font-family: "Goyang";
+  src: url("fonts/Goyang.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body * {
+  font-family: Goyang;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+#App {
+  margin: 1.5em auto;
+  max-width: 1200px;
+  column-gap: 1.5em;
+}
+.header {
+  display: flex;
+}
+.SearchResult {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  grid-gap: 10px;
+}
+
+.SearchResult img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.SearchResult .item {
+  background-color: #eee;
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+}
+
+.SearchInput {
+  flex: 5;
+  font-size: 40px;
+  padding: 10px 15px;
+}
+.random-fetch-btn {
+  flex: 1;
+}
+.ImageInfo {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: 1s opacity;
+}
+.modal-loading {
+  display: inline;
+  font-size: 50px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  opacity: 0.5;
+}
+.ImageInfo .title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ImageInfo .title,
+.ImageInfo .description {
+  padding: 5px;
+}
+
+.ImageInfo .content-wrapper {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.ImageInfo.modal-open {
+  opacity: 1;
+}
+
+.ImageInfo .content-wrapper img {
+  width: 100%;
+}
+
+/* */
+body.modal-open {
+  overflow: hidden;
+}
+/* 다크모드 */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: white;
+  }
+}
+body.dark-theme * {
+  background-color: #000;
+  color: white;
+}
+
+body.scroll-hidden {
+  overflow: hidden;
+}
+
+/* 화면 사이즈에 따른 갯수 반응형*/
+@media screen and (max-width: 992px) {
+  .SearchResult {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+  }
+}
+@media screen and (max-width: 768px) {
+  .SearchResult {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+  .ImageInfo .content-wrapper {
+    left: 0%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    transform: translate(0%, -50%);
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+  }
+}
+@media screen and (max-width: 572px) {
+  .SearchResult {
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+  }
+}
